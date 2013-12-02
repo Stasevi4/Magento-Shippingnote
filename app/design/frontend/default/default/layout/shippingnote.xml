@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="left">
+			<block type="core/template" name ="shippingnote" as="shippingnote" template="stasevi4/shippingnote.phtml"/>
+		</reference>
+	</default>
+</layout>

@@ -1,0 +1,25 @@
+<?php
+ //total items in cart
+$totals = Mage::getSingleton('checkout/session')->getQuote()->getTotals(); //Total object
+$freeshipping = Mage::getStoreConfig("carriers/freeshipping/free_shipping_subtotal")  ;
+$grandtotal =  $freeshipping - $totals["subtotal"]->getValue(); //Grandtotal value
+$toolbar = 100 - $grandtotal * 100 / $freeshipping ;
+
+
+?>
+
+<div class="block shippingnote">
+	<div class="block-title"><strong><span>FREE Shipping</span></strong></div>
+	<div class="block-content ">
+		<?php	
+			if($grandtotal > 0){
+				printf("Spend $%s more to get <br/>FREE SHIPPING <br/> (continental US only).", money_format ('%.2n',$grandtotal) ); 
+			}else{
+				printf("This order is eligible for <br/> FREE SHIPPING <br/>(continental US only)."); 
+			}
+		?>
+		<div class="loadbar">
+			<div class="loadbarinner" style="width:<?php echo $toolbar;?>%;"></div>
+		</div>
+	</div>
+</div>
